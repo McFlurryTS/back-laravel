@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
 
@@ -8,3 +9,4 @@ Route::get('/', function () {
 });
 
 Route::resource('questions', QuestionController::class);
+Route::resource('menus', MenuController::class);
