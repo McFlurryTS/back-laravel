@@ -1,0 +1,43 @@
+[
+    {
+      "question": "¿Cuál es tu combo o producto estrella en McDonald’s?",
+      "options": ["Big Mac", "McNuggets", "Cuarto de libra", "McPollo", "Ensalada", "Papas grandes", "Otro"],
+      "type": "multiple_choice"
+    },
+    {
+      "question": "¿Qué postre es tu debilidad?",
+      "options": ["Pay de manzana", "Sundae", "McFlurry", "Cono clásico", "Helado doble", "No soy tan dulcero", "Otro"],
+      "type": "multiple_choice"
+    },
+    {
+      "question": "Si McDonald’s te regalara algo… ¿qué preferirías?",
+      "options": ["Una cajita de McNuggets", "Una hamburguesa con queso", "Un helado frío", "¡Sorpresa! Me gusta todo"],
+      "type": "single_choice"
+    },
+    {
+      "question": "¿Para quién sueles comprar en McDonald’s?",
+      "options": ["Solo para mí", "Para mí y mi pareja", "Para mis hijos", "Para toda la familia", "A veces varía"],
+      "type": "multiple_choice"
+    },
+    {
+      "question": "¿Qué sabores te hacen decir “¡qué rico!”?",
+      "options": ["Intensos y carnosos", "Suaves y cremosos", "Picantes", "Agridulces", "Me gusta variar"],
+      "type": "multiple_choice"
+    },
+    {
+      "question": "¿Por qué no vienes más seguido a McDonald’s?",
+      "options": ["Me gustaría más variedad", "A veces se me pasa", "Me cuido un poco más", "Falta de promociones", "Otro"],
+      "type": "single_choice"
+    },
+    {
+      "question": "¿Qué tipo de sorpresas te gustaría recibir?",
+      "options": ["Cupones especiales solo para mí", "Menús secretos", "Regalos para mis hijos", "Descuentos cuando hace calor o frío", "Todo lo anterior 😏"],
+      "type": "multiple_choice"
+    },
+    {
+      "question": "¿Qué acompañamiento prefieres?",
+      "options": ["Papas", "Ensalada", "Aros de cebolla", "Nugguets", "Ninguno"],
+      "type": "multiple_choice"
+    }
+  ]
+  
