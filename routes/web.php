@@ -8,5 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('questions', QuestionController::class);
-Route::resource('menus', MenuController::class);
+Route::prefix('api')->group(function () {
+    Route::resource('questions', QuestionController::class);
+    Route::resource('menu_completo', MenuController::class);
+});
