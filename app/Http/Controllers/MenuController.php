@@ -13,7 +13,8 @@ class MenuController extends Controller
     public function index()
     {
         $menus = Menu::all();
-        return response()->json($menus);
+
+        return response()->json(['menu'=>$menus]);
     }
 
     /**
