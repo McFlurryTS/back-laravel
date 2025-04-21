@@ -63,4 +63,8 @@ class Menu extends Model
         'sugarTotals' => 'decimal:2',
         'price' => 'string',
     ];
+    public function recommendation()
+    {
+        return $this->belongsTo(Recommendation::class);
+    }
 }
