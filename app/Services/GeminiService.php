@@ -1,15 +1,17 @@
 <?php
 
+namespace App\Services;
 use Illuminate\Support\Facades\Http;
 
 class GeminiService
 {
     protected $apiKey;
     protected $baseUrl = 'https://generativelanguage.googleapis.com/v1beta/models/'; // Ejemplo base URL
+    protected $model = 'gemini-pro'; // Modelo para texto
 
     public function __construct()
     {
-        $this->apiKey = env('GEMINI_API_KEY');
+        $this->apiKey = env('GEMINI_API_KEY'); // Asegúrate de tener la clave API en tu archivo .env
     }
 
     public function generateRecommendations(array $menu, array $preferences)
@@ -36,9 +38,7 @@ class GeminiService
             ], [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                ],
-                'query' => [
-                    'key' => $this->apiKey,
+                    'X-Goog-Api-Key' => $this->apiKey, // API key en la cabecera (revisar el nombre correcto del header)
                 ],
             ]);
 
@@ -56,6 +56,41 @@ class GeminiService
         } catch (\Exception $e) {
             \Log::error('Excepción al llamar a la API de Gemini: ' . $e->getMessage());
             return null; // O lanza una excepción
+        }
+    }
+    public function askQuestion(string $question)
+    {
+        try {
+            $response = Http::post($this->baseUrl . $this->model . ':generateContent', [
+                'contents' => [
+                    [
+                        'parts' => [
+                            ['text' => $question],
+                        ],
+                    ],
+                ],
+            ], [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'query' => [
+                    'key' => $this->apiKey,
+                ],
+            ]);
+
+            if ($response->successful()) {
+                $data = $response->json();
+                $answer = $data['candidates'][0]['content']['parts'][0]['text'] ?? null;
+                return $answer;
+            } else {
+                //\Log::error('Error al llamar a la API de Gemini: ' . $response->status() . ' - ' . $response->body());
+                
+                return $response->body();
+            }
+
+        } catch (\Exception $e) {
+            //\Log::error('Excepción al llamar a la API de Gemini: ' . $e->getMessage());
+            return $e->getMessage();
         }
     }
 }

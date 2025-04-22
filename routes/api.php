@@ -27,7 +27,7 @@ Route::post('/login', [LoginController::class, 'login']);
 |--------------------------------------------------------------------------
 */
 Route::resource('menus', MenuController::class);
-
+Route::resource('menu_completo', MenuController::class);
 Route::middleware(['auth:sanctum'])->group(function () {
 
     // Logout
@@ -39,8 +39,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     // Recursos protegidos
-    Route::resource('questions', QuestionController::class);
-    Route::resource('menu_completo', MenuController::class);
+    Route::resource('questions', QuestionController::class);    
     Route::resource('answers', AnswerController::class);    
     Route::resource('recommendations', RecommendationController::class);
     Route::get('get-recommendation', 'App\Http\Controllers\RecommendationController@getRecommendation');
