@@ -60,6 +60,11 @@ class Menu extends Model
         'transFats' => 'decimal:2',
         'transFatsPercentage' => 'integer',
         'allergens' => 'array',
-        'sugarTotals' => 'decimal:2'
+        'sugarTotals' => 'decimal:2',
+        'price' => 'string',
     ];
+    public function recommendation()
+    {
+        return $this->belongsTo(Recommendation::class);
+    }
 }

@@ -12,8 +12,9 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::all();
-        return response()->json($menus);
+        $menus = Menu::select('id', 'category', 'name', 'description', 'price', 'image', 'country', 'active', 'updated_at')->get();
+
+        return response()->json(['menu'=>$menus]);
     }
 
     /**

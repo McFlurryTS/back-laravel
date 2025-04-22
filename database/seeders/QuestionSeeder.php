@@ -15,7 +15,7 @@ class QuestionSeeder extends Seeder
     public function run(): void
     {
         // Clear existing data
-        DB::table('questions')->truncate();
+        //DB::table('questions')->truncate();
 
         // Load questions from JSON file
         $jsonPath = base_path('questions.json');
@@ -33,7 +33,6 @@ class QuestionSeeder extends Seeder
             return;
         }
 
-        $this->command->info(count($questions));
         $this->command->info('Starting to seed questions...');
         $count = 0;
 
