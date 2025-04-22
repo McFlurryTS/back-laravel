@@ -15,6 +15,7 @@ Route::prefix('api')->group(function () {
     Route::resource('menu_completo', MenuController::class);
     Route::resource('answers', AnswerController::class);    
     Route::resource('recommendations', RecommendationController::class);
+    Route::get('get-recommendation', 'App\Http\Controllers\RecommendationController@getRecommendation');
     Route::get('get_csrf', function () {
         return response()->json(['csrf_token' => csrf_token()]);
     });

@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
+use App\Models\Menu;
 use App\Models\Recommendation;
+use GeminiService;
 use Illuminate\Http\Request;
 
 class RecommendationController extends Controller
 {
+    protected $geminiService;
+    public function __construct(GeminiService $geminiService)
+    {
+        $this->geminiService = $geminiService;
+    }
+
     public function index()
     {
         return Recommendation::with('user', 'menu')
@@ -24,6 +33,23 @@ class RecommendationController extends Controller
 
         return Recommendation::create($validated);
     }
+    public function getRecommendation()
+    {
+
+        $menu = Menu::take(10)
+            ->get(['id', 'name', 'description', 'category']);
+        
+        
+        //return response()->json($menu);        
+        $userId = auth()->id();
+        $userPreferences = Answer::where('user_id', $userId)
+            ->with('question')
+            ->get()
+            ->groupBy('question_id');       
+                
+        $recomendations = $this->geminiService->generateRecommendations($menu, $userPreferences);
+    }
+
 
 
 }
