@@ -10,7 +10,7 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::truncate(); // Opcional: Limpia la tabla para evitar duplicados
+        //User::truncate(); // Opcional: Limpia la tabla para evitar duplicados
 
         $usuarios = [
             [

@@ -16,7 +16,7 @@ class MenuSeeder extends Seeder
     public function run(): void
     {
         // Clear existing data
-        DB::table('menus')->truncate();
+        //DB::table('menus')->truncate();
         
         // Read the combined menu JSON file
         $jsonPath = base_path('menu.json');
