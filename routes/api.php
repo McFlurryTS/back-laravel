@@ -19,13 +19,12 @@ Route::get('/', function () {
 
 // Registro y login
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/register', [RegisterController::class, 'register']);
-
 /*
 |--------------------------------------------------------------------------
 | Rutas protegidas con auth:sanctum
 |--------------------------------------------------------------------------
 */
+Route::resource('menus', MenuController::class);
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
@@ -39,5 +38,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Recursos protegidos
     Route::resource('questions', QuestionController::class);
-    Route::resource('menus', MenuController::class);
 });

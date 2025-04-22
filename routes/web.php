@@ -13,7 +13,6 @@ Route::get('/', function () {
 
 // Registro y login
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/register', [RegisterController::class, 'register']);
 
 /*
 |--------------------------------------------------------------------------
