@@ -106,7 +106,7 @@ class OpenAIService
                 'messages' => [
                     [
                         'role' => 'system',
-                        'content' => 'Eres un asistente experto en combos del menú de McDonald\'s. Tu tarea es recomendar combos personalizados según el perfil del usuario y el momento del día. Tus recomendaciones siempre consideran tanto las preferencias como la hora actual, y usas un tono amigable y conversacional.'
+                        'content' => 'Eres un asistente experto en combos del menú de McDonald\'s. Tu tarea es recomendar combos personalizados según el perfil del usuario y el momento del día. Siempre devuelves sugerencias pensadas para el contexto de compra, y usas un tono amigable y conversacional.'
                     ],
                     [
                         'role' => 'user',
@@ -114,23 +114,42 @@ class OpenAIService
                             "Hora actual: $now\n\n" .
                             "Preferencias del usuario:\n" . json_encode($preferences) . "\n\n" .
                             "Aquí tienes el menú completo en formato JSON:\n" . json_encode($menu) . "\n\n" .
-                            "En base a las preferencias del usuario —especialmente si indica para quién suele comprar (por ejemplo: 'para mis hijos', 'para mi pareja', 'solo para mí')— selecciona **entre 3 y 4 combos** del menú que mejor se adapten a ese perfil.\n\n" .
-                            "Además, si la hora está entre **08:00 y 12:00**, incluye combos de desayuno (como hotcakes, McMuffins, jugo, café, etc). Si es después de las 12:00, sugiere combos normales o hamburguesas.\n\n" .
+                            "En base a las preferencias del usuario —especialmente si indica para quién suele comprar (por ejemplo: 'para mis hijos', 'para mi pareja', 'solo para mí')— selecciona **entre 3 y 4 combos** que se adapten a ese perfil.\n\n" .
+                            "- Si la hora está entre **08:00 y 12:00**, incluye combos de desayuno (ej: hotcakes, McMuffins, jugo, café, etc).\n" .
+                            "- Después de las 12:00, ofrece combos estándar (hamburguesas, papas, bebidas, postres, etc).\n\n" .
                             "Cada combo debe tener:\n" .
                             "- Un `id`\n" .
-                            "- Un `nombre`\n\n" .
+                            "- Un `nombre`\n" .
+                            "- Un array `items` con 3 o 4 productos del menú (cada uno con `id` y `nombre`).\n\n" .
                             "Incluye también un `message` inicial personalizado según el perfil del usuario. Por ejemplo: '¿Qué tal algo para tus hijos?' o '¿Hora de consentirte con algo clásico?'\n\n" .
                             "Devuelve exactamente este formato JSON:\n\n" .
                             "{\n" .
                             "  \"message\": \"¿Qué tal algo para tus hijos?\",\n" .
                             "  \"combos\": [\n" .
-                            "    { \"id\": \"xyz123\", \"nombre\": \"Cajita Feliz Hamburguesa\" },\n" .
-                            "    { \"id\": \"xyz456\", \"nombre\": \"Cajita Feliz McNuggets\" },\n" .
-                            "    { \"id\": \"xyz789\", \"nombre\": \"Hotcakes con jugo de naranja\" }\n" .
+                            "    {\n" .
+                            "      \"id\": \"combo_01\",\n" .
+                            "      \"nombre\": \"Cajita Feliz Hamburguesa\",\n" .
+                            "      \"items\": [\n" .
+                            "        { \"id\": \"001\", \"nombre\": \"Hamburguesa\" },\n" .
+                            "        { \"id\": \"002\", \"nombre\": \"Papas kids\" },\n" .
+                            "        { \"id\": \"003\", \"nombre\": \"Jugo de manzana\" }\n" .
+                            "      ]\n" .
+                            "    },\n" .
+                            "    {\n" .
+                            "      \"id\": \"combo_02\",\n" .
+                            "      \"nombre\": \"Combo Desayuno McMuffin\",\n" .
+                            "      \"items\": [\n" .
+                            "        { \"id\": \"004\", \"nombre\": \"McMuffin con huevo\" },\n" .
+                            "        { \"id\": \"005\", \"nombre\": \"Hashbrown\" },\n" .
+                            "        { \"id\": \"006\", \"nombre\": \"Café americano\" }\n" .
+                            "      ]\n" .
+                            "    }\n" .
+                            "    // otros combos aquí...\n" .
                             "  ]\n" .
                             "}\n\n" .
-                            "No agregues texto fuera de ese JSON."
+                            "No incluyas ningún texto fuera de ese JSON."
                     ]
+                    
                                         
                 ],
                 'max_tokens' => 1000, // Ajusta según la longitud esperada de la respuesta
