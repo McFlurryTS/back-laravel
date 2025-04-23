@@ -64,10 +64,18 @@ class RecommendationController extends Controller
             ]);
         }
         //return response()->json($preferences);        
-        $recommendations = $this->openAIService->generateRecommendations($menu->toArray(), $preferences);      
+        $recommendations = json_decode($this->openAIService->generateRecommendations($menu->toArray(), $preferences)); 
+        foreach($recommendations as $r){
+            foreach($r->options as &$option){
+                $menuItem = Menu::where('id', $option->id)->first(['id', 'name', 'description', 'category', 'price']);
+                if($menuItem){                    
+                    $option = $menuItem;
+                }
+            }
+        } 
           // $recommendations is already an array or null, no need to decode
         if ($recommendations) {
-            return response()->json(json_decode($recommendations), 200);
+            return response()->json($recommendations, 200);
         } else {
             return response()->json(['error' => 'No se pudieron obtener las recomendaciones de OpenAI'], 500);
         }
@@ -100,7 +108,8 @@ class RecommendationController extends Controller
             ]);
         }
         
-        $recommendations = $this->openAIService->generateCombosRecommendations($menu->toArray(), $preferences);      
+        $recommendations = $this->openAIService->generateCombosRecommendations($menu->toArray(), $preferences); 
+             
         
         if ($recommendations) {
             return response()->json(json_decode($recommendations), 200);
