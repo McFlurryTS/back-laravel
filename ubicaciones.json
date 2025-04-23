@@ -1,0 +1,98 @@
+[
+  {
+    "latitude": 20.67501369682751,
+    "longitude": -103.3675299527622,
+    "name": "AV. VALLARTA",
+    "address": "Av. Ignacio L Vallarta 1402, Col Americana, Americana, 44160 Guadalajara, Jal."
+  },
+  {
+    "latitude": 20.675042385514868,
+    "longitude": -103.34788942141104,
+    "name": "GUAD. CENTRO",
+    "address": "McDonald's, Av Juárez 343, Zona Centro, 44100 Guadalajara, Jal."
+  },
+  {
+    "latitude": 20.643129428450987,
+    "longitude": -103.28053690991422,
+    "name": "GUADALAJARA RIO NILO",
+    "address": "McDonald's, Av Río Nilo 4124, 45418 Guadalajara, Jal."
+  },
+  {
+    "latitude": 20.649579477671452,
+    "longitude": -103.30737233161999,
+    "name": "AV. REVOLUCION",
+    "address": "McDonald's, Calz. Revolución 2563, Electricistas, 44810 Guadalajara, Jal."
+  },
+  {
+    "latitude": 20.647801876341088,
+    "longitude": -103.320585650927,
+    "name": "FORUM TLAQUEPAQUE",
+    "address": "Blvd. Marcelino Garcia Barragan No. 2077 y 2378 Local Fc 12, GUADALAJARA"
+  },
+  {
+    "latitude": 20.719568902823426,
+    "longitude": -103.31819802930038,
+    "name": "GUADALAJARA INDEPENDENCIA",
+    "address": "Calz. Independencia Nte. No. 3305, GUADALAJARA"
+  },
+  {
+    "latitude": 20.674552711183587,
+    "longitude": -103.34216997027488,
+    "name": "GUADALAJARA PLAZA ALAMEDA",
+    "address": "Centro Comercial \"Plaza Alameda\" Calzada Independencia No.28, GUADALAJARA"
+  },
+  {
+    "latitude": 20.649637286305378,
+    "longitude": -103.3646359429576,
+    "name": "LAZARO CARDENAS",
+    "address": "Av. Lazaro Cárdenas No. 1422, GUADALAJARA"
+  },
+  {
+    "latitude": 20.69619015214393,
+    "longitude": -103.3506622291809,
+    "name": "LA NORMAL",
+    "address": "Manuel Ávila Camacho No. 1087, GUADALAJARA"
+  },
+  {
+    "latitude": 20.69480010398771,
+    "longitude": -103.37629578500719,
+    "name": "MidTown Jalisco",
+    "address": "AV. ADOLFO LOPEZ MATEOS NO. 2405, ESQUINA COLOMOS ENTRE COLOMOS Y VENECIA, COL. ITALIA PROVIDENCIA, GUADALAJARA"
+  },
+  {
+    "latitude": 20.712564344751005,
+    "longitude": -103.37870107197818,
+    "name": "GUADALAJARA PLAZA PATRIA CENTRO COMERCIAL",
+    "address": "Av. Americas 1950 - Local L 4 y 5, GUADALAJARA"
+  },
+  {
+    "latitude": 20.650595332628733,
+    "longitude": -103.39864016740025,
+    "name": "MARIANO OTERO",
+    "address": "Av. Mariano Otero No. 2691, GUADALAJARA"
+  },
+  {
+    "latitude": 20.673667442607993,
+    "longitude": -103.40487701413545,
+    "name": "LA GRAN PLAZA",
+    "address": "Av. Vallarta No. 3959, GUADALAJARA"
+  },
+  {
+    "latitude": 20.67828210848175,
+    "longitude": -103.40390383316785,
+    "name": "AV. MEXICO",
+    "address": "Av. México No. 3640, GUADALAJARA"
+  },
+  {
+    "latitude": 20.676904386838597,
+    "longitude": -103.43109726905914,
+    "name": "GUADALAJARA GALERIAS",
+    "address": "Rafael Sanzio No.150 Local C-3 Nivel Vallarta, GUADALAJARA"
+  },
+  {
+    "latitude": 20.62837706900186,
+    "longitude": -103.41745553172011,
+    "name": "MCDONALD'S GAL. STA. ANITA",
+    "address": "AV. LOPEZ MATEOS No. 9900 L-101, GUADALAJARA"
+  }
+]

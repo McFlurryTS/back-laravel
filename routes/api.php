@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RecommendationController;
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('answers', AnswerController::class);    
     Route::resource('recommendations', RecommendationController::class);
     Route::get('get-recommendation', 'App\Http\Controllers\RecommendationController@getRecommendation');
+    Route::apiResource('locations', LocationController::class);
 });

@@ -1,17 +1,18 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens; // IMPORTANTE
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'username', 'email', 'password',
+        'username', 'email', 'password', 'visitas', 
     ];
 
     protected $hidden = [
@@ -24,5 +25,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Relación con los cupones (un usuario tiene muchos cupones).
+     */
+    public function coupons()
+    {
+        return $this->hasMany(Coupon::class);
     }
 }
