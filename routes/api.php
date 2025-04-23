@@ -44,5 +44,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('answers', AnswerController::class);    
     Route::resource('recommendations', RecommendationController::class);
     Route::get('get-recommendation', 'App\Http\Controllers\RecommendationController@getRecommendation');
+    Route::get('get-combo-recommendation', 'App\Http\Controllers\RecommendationController@getComboRecommendation');
     Route::apiResource('locations', LocationController::class);
 });

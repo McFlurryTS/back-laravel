@@ -73,7 +73,42 @@ class RecommendationController extends Controller
         }
                 
     }
+    public function getComboRecommendation()
+    {
+        
+        //$menu = Menu::all(['id', 'name', 'description', 'category']);
 
+        //Get 10 items for each category        
+        $menu = Menu::select(['id', 'name', 'description', 'category'])
+            ->get()
+            ->groupBy('category')
+            ->map(function ($items) {
+            return $items->take(10);
+            })
+            ->flatten(1);
+        //return response()->json($menu);        
+        $userId = auth()->id();
+        $userPreferences = Answer::where('user_id', $userId)
+            ->with('question:id,question')
+            ->get();                             
+                            
+        $preferences = [];
+        foreach($userPreferences as $p){
+            array_push($preferences, [
+                'question' => $p->question->question,
+                'answer' => $p->answer
+            ]);
+        }
+        
+        $recommendations = $this->openAIService->generateCombosRecommendations($menu->toArray(), $preferences);      
+        
+        if ($recommendations) {
+            return response()->json(json_decode($recommendations), 200);
+        } else {
+            return response()->json(['error' => 'No se pudieron obtener las recomendaciones de OpenAI'], 500);
+        }
+                
+    }
 
 
 }
