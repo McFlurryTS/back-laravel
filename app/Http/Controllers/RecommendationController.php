@@ -36,8 +36,17 @@ class RecommendationController extends Controller
     }
     public function getRecommendation()
     {
-        //$menu = Menu::take(10)->get(['id', 'name', 'description', 'category']);                
-        $menu = Menu::all(['id', 'name', 'description', 'category']);
+        
+        //$menu = Menu::all(['id', 'name', 'description', 'category']);
+
+        //Get 10 items for each category        
+        $menu = Menu::select(['id', 'name', 'description', 'category'])
+            ->get()
+            ->groupBy('category')
+            ->map(function ($items) {
+            return $items->take(10);
+            })
+            ->flatten(1);
         //return response()->json($menu);        
         $userId = auth()->id();
         $userPreferences = Answer::where('user_id', $userId)
@@ -45,6 +54,8 @@ class RecommendationController extends Controller
             ->get();                             
         //return response()->json($userPreferences); 
         //{"question" : 'que prefieres', "answer" : "McNuggets"},
+        
+        
         $preferences = [];
         foreach($userPreferences as $p){
             array_push($preferences, [
@@ -52,12 +63,11 @@ class RecommendationController extends Controller
                 'answer' => $p->answer
             ]);
         }
-        //return response()->json($preferences);
-                                      
-        $recommendations = $this->openAIService->generateRecommendations($menu->toArray(), $preferences);
-        
+        //return response()->json($preferences);        
+        $recommendations = $this->openAIService->generateRecommendations($menu->toArray(), $preferences);      
+          // $recommendations is already an array or null, no need to decode
         if ($recommendations) {
-            return response()->json(['recommendations' => $recommendations]);
+            return response()->json(json_decode($recommendations), 200);
         } else {
             return response()->json(['error' => 'No se pudieron obtener las recomendaciones de OpenAI'], 500);
         }
