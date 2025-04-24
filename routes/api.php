@@ -9,6 +9,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\OrdenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +47,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('recommendations', RecommendationController::class);
     Route::get('get-recommendation', 'App\Http\Controllers\RecommendationController@getRecommendation');
     Route::get('get-combo-recommendation', 'App\Http\Controllers\RecommendationController@getComboRecommendation');    
+    Route::post('/purchases', [OrdenController::class, 'store']);
 });

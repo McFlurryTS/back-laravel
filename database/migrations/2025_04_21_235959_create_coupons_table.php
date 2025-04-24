@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->date('valid_until')->nullable();
             $table->boolean('active')->default(true);
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Relación con usuarios
+            $table->integer('nivel');
             $table->timestamps();
         });
     }
@@ -29,6 +29,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('coupons', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+        });
         Schema::dropIfExists('coupons');
     }
 };

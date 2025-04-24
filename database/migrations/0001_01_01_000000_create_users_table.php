@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('username')->unique(); // Cambiado de 'name' a 'username'
             $table->string('email')->unique();
             $table->string('password');
-            $table->unsignedInteger('visitas')->default(0); // Nuevo campo 'visitas'
+            $table->unsignedInteger('visits')->default(0); // Changed 'visitas' to 'visits'
+            $table->integer('puntos')->default(0); // Removed 'after' clause
             $table->timestamps();
         });
 
