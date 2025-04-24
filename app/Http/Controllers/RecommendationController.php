@@ -37,16 +37,12 @@ class RecommendationController extends Controller
     public function getRecommendation()
     {
         
-        //$menu = Menu::all(['id', 'name', 'description', 'category']);
+        $menu = Menu::all(['id', 'name', 'description', 'category']);
 
         //Get 10 items for each category        
-        $menu = Menu::select(['id', 'name', 'description', 'category'])
-            ->get()
-            ->groupBy('category')
-            ->map(function ($items) {
-            return $items->take(10);
-            })
-            ->flatten(1);
+        //$menu = Menu::select(['id', 'name', 'description', 'category'])->get()->groupBy('category')->map(function ($items) {
+          //  return $items->take(10);
+        //})->flatten(1);
         //return response()->json($menu);        
         $userId = auth()->id();
         $userPreferences = Answer::where('user_id', $userId)
@@ -70,7 +66,7 @@ class RecommendationController extends Controller
         $recommendations = json_decode($this->openAIService->generateRecommendations($menu->toArray(), $preferences)); 
         foreach($recommendations as $r){
             foreach($r->options as &$option){
-                $menuItem = Menu::where('id', $option->id)->first(['id', 'name', 'description', 'category', 'price']);
+                $menuItem = Menu::where('id', $option->id)->first(['id', 'name', 'description', 'category', 'price', 'image']);
                 if($menuItem){                    
                     $option = $menuItem;
                 }
