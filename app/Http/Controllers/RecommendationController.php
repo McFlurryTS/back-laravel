@@ -64,6 +64,9 @@ class RecommendationController extends Controller
         }
         //return response()->json($preferences);        
         $recommendations = json_decode($this->openAIService->generateRecommendations($menu->toArray(), $preferences)); 
+        if($recommendations == null){
+            return response()->json(['error' => 'No se encontraron recomendaciones'], 404);
+        }
         foreach($recommendations as $r){
             foreach($r->options as &$option){
                 $menuItem = Menu::where('id', $option->id)->first(['id', 'name', 'description', 'category', 'price', 'image']);
