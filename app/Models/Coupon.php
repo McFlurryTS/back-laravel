@@ -16,14 +16,6 @@ class Coupon extends Model
         'icon',
         'valid_until',
         'active',
-        'user_id',
+        'nivel',
     ];
-
-    /**
-     * Relación inversa: un cupón pertenece a un usuario.
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
