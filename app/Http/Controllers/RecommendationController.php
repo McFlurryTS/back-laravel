@@ -51,7 +51,10 @@ class RecommendationController extends Controller
         $userId = auth()->id();
         $userPreferences = Answer::where('user_id', $userId)
             ->with('question:id,question')
-            ->get();                             
+            ->get();      
+        if($userPreferences->isEmpty()){
+            return response()->json(['error' => 'No se encontraron preferencias de usuario'], 404);
+        }
         //return response()->json($userPreferences); 
         //{"question" : 'que prefieres', "answer" : "McNuggets"},
         
